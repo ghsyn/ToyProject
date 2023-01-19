@@ -3,6 +3,7 @@ package com.example.toyproject;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager = getSupportFragmentManager();
-    private AddPlantFragment AddPlantFragment = new AddPlantFragment();
-    private AiCameraFragment AiCameraFragment = new AiCameraFragment();
-    private EncyclopediaFragment EncycloprediaFragment = new EncyclopediaFragment();
-    private homeFragment homeFragment = new homeFragment();
-    private TipsFragment tipsFragment = new TipsFragment();
 
+    homeFragment homeFrag;
+    FragmentManager manager;
     LinearLayout home_ly;
     BottomNavigationView bottomNavigationView;
 
@@ -32,8 +29,16 @@ public class MainActivity extends AppCompatActivity {
         init(); //객체 정의
         SettingListener(); //리스너 등록
 
+
         //맨 처음 시작할 탭 설정
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+
+        manager = getSupportFragmentManager();
+        homeFrag = (homeFragment)manager.findFragmentByTag("home");
+//        homeFrag.setWaterCount();
+
+
+
     }
 
     private void init() {
@@ -43,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void SettingListener() {
         //선택 리스너 등록
-        bottomNavigationView.setOnNavigationItemSelectedListener(new TabSelectedListener());
+        bottomNavigationView.setOnItemSelectedListener(new TabSelectedListener());
     }
 
-    class TabSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
+    class TabSelectedListener implements BottomNavigationView.OnItemSelectedListener{
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.item_home: {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.home_ly, new homeFragment())
+                            .replace(R.id.home_ly, new homeFragment(),"tag")
                             .commit();
                     return true;
                 }
