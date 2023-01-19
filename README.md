@@ -23,3 +23,9 @@ abc
 - AddPlantFragment에서 클릭 했을 때 datePicker가 나오게 만듦.
 - 식물이름 자동 완성 기능을 구현함.
 - plant class 에서 사진 저장 기능 구현할 예정
+
+
+
+#앞으로 해야할 일
+
+-[ ] ㅁㅁ
