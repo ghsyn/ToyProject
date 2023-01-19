@@ -1,7 +1,5 @@
 # ToyProject
-
 ##일지
-
 #######2023-01-12
 
 Bottom navigation 구현
