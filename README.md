@@ -14,4 +14,5 @@ P.S Fragment가 아닌 다른 액티비티로 Intent 했을 때에도 Bottom nav
 - FE에서 완성한 xml파일들을 합쳤음.
 - 현재는 DB가 없어서 일단 임의의 값을 넣어서 오늘 물을 주어야할 식물 수 구현함.
 - AddPlantFragment에서 클릭 했을 때 datePicker가 나오게 만듦.
-- 앞으로 식물이름 자동 완성 기능을 구현할 예정
+- 식물이름 자동 완성 기능을 구현함.
+- plant class 에서 사진 저장 기능 구현할 예정
