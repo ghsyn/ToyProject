@@ -81,11 +81,5 @@ public class homeFragment extends Fragment {
 
 
 
-    public void setWaterCount(){
 
-
-
-        waterCount.setText("3");
-
-    }
 }

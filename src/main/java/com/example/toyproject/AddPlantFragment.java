@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import org.w3c.dom.Text;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,12 +28,15 @@ import java.time.format.DateTimeFormatter;
  * create an instance of this fragment.
  */
 public class AddPlantFragment extends Fragment {
-    EditText addName, plantSelect;
+    EditText  plantSelect;
+    AutoCompleteTextView addName;
     TextView recommand, addDate;
     ImageButton plantImage;
     Plant plant;
     Button add_btn;
     LocalDate setDate = LocalDate.now();
+    ArrayList<Plant> plants;
+    ArrayList<String> plantName;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,17 +86,26 @@ public class AddPlantFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = null;
         view = inflater.inflate(R.layout.fragment_add_plant, container, false);
-        addName = (EditText)view.findViewById(R.id.plant_addname);
+        addName = (AutoCompleteTextView) view.findViewById(R.id.plant_addname);
         addDate = (TextView)view.findViewById(R.id.plant_adddate);
         plantSelect =(EditText)view.findViewById(R.id.plant_select);
         recommand = (TextView)view.findViewById(R.id.plant_recommend);
         plantImage = (ImageButton)view.findViewById(R.id.image_add);
         add_btn =(Button)view.findViewById(R.id.insert_btn);
         LocalDate nowDate = LocalDate.now();
-
+        String name[] = {"강아지풀", "민들레", "코스모스", "할미꽃","개나리", "다육이"};
 //        addDate.setText(nowDate.toString());
+        plantName = new ArrayList<>();
+        plants = new ArrayList<>();
+        for(int i = 0; i<name.length;i++) {
+            plant = new Plant();
+            plant.setName(name[i]);
+            plants.add(plant);
+        }
+        for(Plant pla :plants){
+            plantName.add(pla.getName());}
 
-        plant = new Plant();
+        addName.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line,plantName));
 
         addDate.setOnClickListener(new View.OnClickListener() {
             @Override
