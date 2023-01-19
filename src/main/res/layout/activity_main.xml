@@ -13,6 +13,7 @@
         android:layout_weight="1"
         />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -22,4 +23,5 @@
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/colorGray">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </LinearLayout>

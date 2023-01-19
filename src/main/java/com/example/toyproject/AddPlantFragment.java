@@ -1,5 +1,6 @@
 package com.example.toyproject;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +25,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AddPlantFragment extends Fragment {
+    EditText addName, plantSelect;
+    TextView recommand, addDate;
+    ImageButton plantImage;
+    Plant plant;
+    Button add_btn;
+    LocalDate setDate = LocalDate.now();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,10 +72,42 @@ public class AddPlantFragment extends Fragment {
         }
     }
 
+//    EditText addName, addDate, plantSelect;
+//    TextView recommand;
+//    ImageButton plantImage;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = null;
+        view = inflater.inflate(R.layout.fragment_add_plant, container, false);
+        addName = (EditText)view.findViewById(R.id.plant_addname);
+        addDate = (TextView)view.findViewById(R.id.plant_adddate);
+        plantSelect =(EditText)view.findViewById(R.id.plant_select);
+        recommand = (TextView)view.findViewById(R.id.plant_recommend);
+        plantImage = (ImageButton)view.findViewById(R.id.image_add);
+        add_btn =(Button)view.findViewById(R.id.insert_btn);
+        LocalDate nowDate = LocalDate.now();
+
+//        addDate.setText(nowDate.toString());
+
+        plant = new Plant();
+
+        addDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getContext(), datePicker, setDate.getYear(), setDate.getMonthValue(), setDate.getDayOfMonth()).show();
+            }
+        });
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_plant, container, false);
+        return view;
     }
+    DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            setDate=LocalDate.of(year,month,dayOfMonth);
+            addDate.setText(setDate.toString());
+        }
+    };
 }
