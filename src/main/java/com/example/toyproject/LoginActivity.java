@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String userName = jsonObject.getString("userName");
                                 String userAddress = jsonObject.getString("userAddress");
 
-                                Toast.makeText(getApplicationContext(), String.format("%s(으)로 로그인함", userName), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), String.format("%s(으)로 로그인함", userName), Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent( LoginActivity.this, MainActivity.class );
 
                                 intent.putExtra("userID", userID);
